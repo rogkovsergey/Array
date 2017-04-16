@@ -10,24 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var column_component_1 = require('./column.component');
 var block_component_1 = require('./block.component');
 var add_block_component_1 = require('./add-block.component');
-// import { BlockService } from './block.service';
+var block_service_1 = require('./block.service');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
             declarations: [
                 app_component_1.AppComponent,
                 column_component_1.ColumnComponent,
                 block_component_1.BlockComponent,
                 add_block_component_1.AddBlockComponent,
             ],
-            // providers:    [ BlockService ],
+            providers: [block_service_1.BlockService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

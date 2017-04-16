@@ -1,7 +1,12 @@
 "use strict";
 var Block = (function () {
-    function Block(message) {
-        this.value = message;
+    // public number: number;
+    // constructor(value: string, number: number) {
+    // 	this.value = value;
+    // 	this.number = number;
+    // }
+    function Block(value) {
+        this.value = value;
     }
     return Block;
 }());

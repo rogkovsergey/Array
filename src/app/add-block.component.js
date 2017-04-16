@@ -9,14 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-// import { BlockService } from './block.service';
-// import { Block } from './block';
 var AddBlockComponent = (function () {
     function AddBlockComponent() {
-        this.saved = new core_1.EventEmitter();
+        this.saved = new core_1.EventEmitter;
     }
-    AddBlockComponent.prototype.addBlock = function (value) {
+    AddBlockComponent.prototype.emitValue = function (value) {
         this.saved.emit(value);
+        console.log('AddBlockComponent emits value:', value);
     };
     __decorate([
         core_1.Output(), 
@@ -25,7 +24,7 @@ var AddBlockComponent = (function () {
     AddBlockComponent = __decorate([
         core_1.Component({
             selector: 'add-block',
-            template: "\n\t<input #InsertName>\n    <button (click)=\"addBlock(InsertName.value)\">AddB</button>",
+            template: "\n\t<input #inputValue>\n\t<button (click)=\"emitValue(inputValue.value)\">Add</button>"
         }), 
         __metadata('design:paramtypes', [])
     ], AddBlockComponent);

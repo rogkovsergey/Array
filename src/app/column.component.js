@@ -13,16 +13,26 @@ var block_service_1 = require('./block.service');
 var ColumnComponent = (function () {
     function ColumnComponent(blocks) {
         this.blocks = blocks;
-        this.column = [];
     }
-    ColumnComponent.prototype.ngOnInit = function () {
-        this.column = this.blocks.getBlock();
+    ColumnComponent.prototype.save = function (value) {
+        this.blocks.addBlock(value, this.column_number);
     };
+    ColumnComponent.prototype.cut = function (index) {
+        this.blocks.cutBlock(this.column_number, index);
+        console.log("Inputed index: ", index, " | Column number: ", this.column_number);
+    };
+    ColumnComponent.prototype.ngOnInit = function () {
+        this.column_number = this.blocks.getColumnNumber();
+        this.column = this.blocks.getBlock(this.column_number);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], ColumnComponent.prototype, "column", void 0);
     ColumnComponent = __decorate([
         core_1.Component({
             selector: 'app-column',
-            template: "\n\t<p>AppColumn</p>\n\t    <app-block></app-block>\n    <add-block></add-block>",
-            providers: [block_service_1.BlockService]
+            template: "<div style='border: solid; border-width: 1px; margin: 5 px'>\n\t<p>AppColumn {{column_number}}</p>\n\t<ul>\n\t\t<li *ngFor = \"let block of column; let i=index\">\n\t\t\t<app-block (cutElement)=\"cut($event)\" [block]=\"block\" [index]=\"i\"></app-block>\n\t\t</li>\n\t</ul>\n\t<add-block (saved)=\"save($event)\"></add-block>\n\t</div>"
         }), 
         __metadata('design:paramtypes', [block_service_1.BlockService])
     ], ColumnComponent);

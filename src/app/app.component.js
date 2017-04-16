@@ -13,17 +13,20 @@ var block_service_1 = require('./block.service');
 var AppComponent = (function () {
     function AppComponent(blocks) {
         this.blocks = blocks;
+        this.columns = [];
     }
     AppComponent.prototype.save = function (value) {
-        this.blocks.addBlock(value);
+        this.blocks.addColumn(value);
+        this.hidden = true;
     };
     AppComponent.prototype.ngOnInit = function () {
+        this.hidden = false;
+        this.columns = this.blocks.getBlock(-1);
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t  \n\t  <add-block (saved)=\"save($event)\"></add-block>\n\t  <app-column></app-column>\n  ",
-            providers: [block_service_1.BlockService]
+            template: "\n\t<add-block (saved)=\"save($event)\"></add-block>\n\t<ul *ngFor = \"let column of columns\">\n\t\t<app-column *ngIf=\"hidden\"></app-column>\n\t</ul>"
         }), 
         __metadata('design:paramtypes', [block_service_1.BlockService])
     ], AppComponent);

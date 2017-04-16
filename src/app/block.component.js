@@ -11,11 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var BlockComponent = (function () {
     function BlockComponent() {
+        this.cutElement = new core_1.EventEmitter;
     }
+    BlockComponent.prototype.emitIndex = function () {
+        this.cutElement.emit(this.index);
+        console.log('BlockComponent emits index:', this.index);
+    };
+    BlockComponent.prototype.ngOnInit = function () {
+        // console.log("Element index:", this.index);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], BlockComponent.prototype, "block", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], BlockComponent.prototype, "index", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], BlockComponent.prototype, "cutElement", void 0);
     BlockComponent = __decorate([
         core_1.Component({
             selector: 'app-block',
-            template: "<p>AppBlock works!</p>"
+            template: "\n\t{{block.value}}\n\t<button (click)=\"emitIndex()\">-</button>"
         }), 
         __metadata('design:paramtypes', [])
     ], BlockComponent);
